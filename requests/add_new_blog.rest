@@ -1,0 +1,9 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "first blog",
+    "author": "tom holland",
+    "url": "lovestolaugh.com",
+    "likes": 56
+}
