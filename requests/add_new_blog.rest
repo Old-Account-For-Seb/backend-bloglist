@@ -2,8 +2,8 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "first blog",
-    "author": "tom holland",
+    "title": "fourth blog",
+    "author": "martin fowler",
     "url": "lovestolaugh.com",
-    "likes": 56
+    "likes": 77
 }
