@@ -42,6 +42,12 @@ test("all notes are returned", async () => {
   assert.strictEqual(response.body.length, initialBlogs.length);
 });
 
+test("unique identifier property is named id", async () => {
+  const response = await api.get("/api/blogs");
+
+  assert(response.body.every((blog) => blog.hasOwnProperty("id")));
+});
+
 after(async () => {
   await mongoose.connection.close();
 });
