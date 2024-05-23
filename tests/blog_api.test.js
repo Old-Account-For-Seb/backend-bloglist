@@ -48,6 +48,31 @@ test("unique identifier property is named id", async () => {
   assert(response.body.every((blog) => blog.hasOwnProperty("id")));
 });
 
+test("POST request successfully makes new blog post", async () => {
+  const newBlog = {
+    title: "New Blog",
+    author: "Me",
+    url: "NewBlog.com",
+    likes: 58,
+  };
+
+  await api
+    .post("/api/blogs")
+    .send(newBlog)
+    .expect(201)
+    .expect("Content-Type", /application\/json/);
+
+  const response = await api.get("/api/blogs");
+
+  console.log(response);
+
+  const titles = response.body.map((r) => r.title);
+
+  assert.strictEqual(response.body.length, initialBlogs.length + 1);
+
+  assert(titles.includes("New Blog"));
+});
+
 after(async () => {
   await mongoose.connection.close();
 });
