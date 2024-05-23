@@ -73,6 +73,22 @@ test("POST request successfully makes new blog post", async () => {
   assert(titles.includes("New Blog"));
 });
 
+test("deleted blog successfully", async () => {
+  const notesAtStart = await api.get("/api/blogs");
+
+  const blogToDelete = notesAtStart.body[0];
+
+  await api.delete(`/api/blogs/${blogToDelete.id}`).expect(204);
+
+  const notesAtEnd = await api.get("/api/blogs");
+
+  assert.strictEqual(notesAtEnd.body.length, initialBlogs.length - 1);
+
+  const titles = notesAtEnd.body.map((r) => r.title);
+
+  assert(!titles.includes(blogToDelete.title));
+});
+
 after(async () => {
   await mongoose.connection.close();
 });
