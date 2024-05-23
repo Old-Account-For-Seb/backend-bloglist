@@ -1,9 +1,11 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjY2NGY4NTVjOTk4YTQ3MDY2NjkyOGNiMiIsImlhdCI6MTcxNjQ5ODUxOX0.rPtAA4eCmGKTAPNYgaUiRW7tnNVActDnDfXOqolk6xE
 
 {
-    "title": "fourth blog",
-    "author": "martin fowler",
+    "title": "user blog 2",
+    "author": "user",
     "url": "lovestolaugh.com",
-    "likes": 77
+    "likes": 31231,
+    "userId": "664f855c998a470666928cb2"
 }
