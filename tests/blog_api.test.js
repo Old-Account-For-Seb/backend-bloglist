@@ -89,6 +89,28 @@ test("deleted blog successfully", async () => {
   assert(!titles.includes(blogToDelete.title));
 });
 
+test("updated blog successfully", async () => {
+  const notesAtStart = await api.get("/api/blogs");
+
+  const blogToUpdate = notesAtStart.body[0];
+
+  const newBlog = {
+    title: "New Blog",
+    author: "Me",
+    url: "NewBlog.com",
+    likes: 58,
+  };
+
+  await api.put(`/api/blogs/${blogToUpdate.id}`).send(newBlog);
+
+  const notesAtEnd = await api.get("/api/blogs");
+
+  const titles = notesAtEnd.body.map((r) => r.title);
+
+  assert(!titles.includes(blogToUpdate.title));
+  assert(titles.includes(newBlog.title));
+});
+
 after(async () => {
   await mongoose.connection.close();
 });
